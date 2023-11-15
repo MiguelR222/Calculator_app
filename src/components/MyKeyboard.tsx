@@ -22,6 +22,17 @@ export default function MyKeyboard(){
         setSecondNumber(firstNumber);
         setFirstNumber("")
     };
+    const handleTrigFunctionPress = (buttonValue : string) => {
+        if (firstNumber.length<10 && firstNumber !== "") {
+            setOperation(buttonValue)
+            setSecondNumber(firstNumber);
+            setFirstNumber("")
+        }
+        if (firstNumber.length<10 && firstNumber === "") {
+            setOperation(buttonValue)
+            setSecondNumber("1");
+        }
+    };
     const handlePiPress = (buttonValue : string) => {
         if (firstNumber.length<10 && firstNumber !== "") {
             const result = Number(firstNumber) * Math.PI;
@@ -95,16 +106,16 @@ export default function MyKeyboard(){
                 setResult(Number(secondNumber) / Number(firstNumber));
                 break;
             case "%":
-                setResult(Number(secondNumber) % Number(firstNumber));
+                setResult(((Number(secondNumber))*100) / Number(firstNumber));
                 break;
             case "sin":
-                setResult(Math.sin(Number(firstNumber)));
+                setResult((Number(secondNumber)*(Math.sin(Number(firstNumber)))));
                 break;
             case "cos":
-                setResult(Math.cos(Number(firstNumber)));
+                setResult((Number(secondNumber)*(Math.cos(Number(firstNumber)))));
                 break;
             case "tan":
-                setResult(Math.tan(Number(firstNumber)));
+                setResult((Number(secondNumber)*(Math.tan(Number(firstNumber)))));                
                 break;
             default:
                 break;
@@ -128,9 +139,9 @@ export default function MyKeyboard(){
                 {firstNumberDisplay()}
             </View>
             <View style={Styles.row}>
-                <TrigButton title="sin" isOrange onPress={() => handleOperationPress("sin")} />
-                <TrigButton title="cos" isOrange onPress={() => handleOperationPress("cos")} />
-                <TrigButton title="tan" isOrange onPress={() => handleOperationPress("tan")} />
+                <TrigButton title="sin" isOrange onPress={() => handleTrigFunctionPress("sin")} />
+                <TrigButton title="cos" isOrange onPress={() => handleTrigFunctionPress("cos")} />
+                <TrigButton title="tan" isOrange onPress={() => handleTrigFunctionPress("tan")} />
                 <TrigButton title="π" isOrange onPress={() => handlePiPress("π")} />
             </View>
             <View style={Styles.row}>
