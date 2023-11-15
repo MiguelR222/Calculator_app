@@ -117,6 +117,9 @@ export default function MyKeyboard(){
             case "tan":
                 setResult((Number(secondNumber)*(Math.tan(Number(firstNumber)))));                
                 break;
+            case "√":
+                setResult((Number(secondNumber)*(Math.sqrt(Number(firstNumber)))));                
+                break;
             default:
                 break;
     }
@@ -146,7 +149,7 @@ export default function MyKeyboard(){
             </View>
             <View style={Styles.row}>
                 <Button title="C" isGray onPress={clear} />
-                <Button title="+/-" isGray onPress={() => handleOperationPress("+/-")} />
+                <Button title="√" isGray onPress={() => handleTrigFunctionPress("√")} />
                 <Button title="%" isGray onPress={() => handleOperationPress("%")} />
                 <Button title="÷" isBlue onPress={() => handleOperationPress("/")} />
             </View>
